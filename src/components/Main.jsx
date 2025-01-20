@@ -2,27 +2,35 @@ import { useState } from "react"
 
 const Main = () => {
 
-  const [title, setTitle] = useState('ciao')
+  const [titles, setTitles] = useState([])
+  const [newTitle, setNewTitle] = useState('')
 
-  const handlerSubmit = () => {
+  const addArticle = () => {
     event.preventDefault()
-    console.log(`articolo aggiunto è ${title}`);
+    console.log(`articolo aggiunto è ${newTitle}`);
+    setTitles([...titles, newTitle]);
+    console.log(titles);
+
 
   }
 
   return (
     <main>
-      <form onSubmit={handlerSubmit}>
+      <form onSubmit={addArticle}>
         <label htmlFor="title">Inserisci il titolo dell'articolo:</label>
         <input
           type="text"
           id="title"
-          value={title}
-          onChange={e => { setTitle(e.target.value) }}
+          value={newTitle}
+          onChange={e => { setNewTitle(e.target.value) }}
         />
         <button type="submit">Aggiugi articolo</button>
       </form>
-      <p>{title}</p>
+      <ul className="articlesList">
+        {titles.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
     </main>
   )
 }

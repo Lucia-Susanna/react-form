@@ -2,17 +2,29 @@ import { useState } from "react"
 
 const Main = () => {
 
-  const [titles, setTitles] = useState([])
+  const [articlesList, setArticlesList] = useState([])
   const [newTitle, setNewTitle] = useState('')
 
   const addArticle = () => {
     event.preventDefault()
-    console.log(`articolo aggiunto è ${newTitle}`);
-    setTitles([...titles, newTitle]);
-    console.log(titles);
+
+    setArticlesList([...articlesList, newTitle]);
+    setNewTitle('')
+
+  }
+
+  const deleteArticle = (i, title) => {
+    console.log(i);
+    const newArticlesList = articlesList.filter((item, index) => i !== index)
+    setArticlesList(newArticlesList)
+
+
+    // console.log(newArticlesList);
 
 
   }
+
+
 
   return (
     <main>
@@ -27,8 +39,14 @@ const Main = () => {
         <button type="submit">Aggiugi articolo</button>
       </form>
       <ul className="articlesList">
-        {titles.map((item, index) => (
-          <li key={index}>{item}</li>
+        {articlesList.map((item, index) => (
+          <li key={index}>
+            <p>{item}</p>
+            <button onClick={() => deleteArticle(index, item)}>
+              <i className="fa-solid fa-trash-can"></i>
+            </button>
+
+          </li>
         ))}
       </ul>
     </main>

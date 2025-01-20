@@ -28,27 +28,29 @@ const Main = () => {
 
   return (
     <main>
-      <form onSubmit={addArticle}>
-        <label htmlFor="title">Inserisci il titolo dell'articolo:</label>
-        <input
-          type="text"
-          id="title"
-          value={newTitle}
-          onChange={e => { setNewTitle(e.target.value) }}
-        />
-        <button type="submit">Aggiugi articolo</button>
-      </form>
-      <ul className="articlesList">
-        {articlesList.map((item, index) => (
-          <li key={index}>
-            <p>{item}</p>
-            <button onClick={() => deleteArticle(index, item)}>
-              <i className="fa-solid fa-trash-can"></i>
-            </button>
+      <div className="container">
+        <form onSubmit={addArticle}>
+          <label htmlFor="title">Inserisci il titolo dell'articolo:</label>
+          <input
+            type="text"
+            id="title"
+            value={newTitle}
+            onChange={e => { setNewTitle(e.target.value) }}
+          />
+          <button type="submit">Aggiugi articolo</button>
+        </form>
+        <ul className="articlesList">
+          {articlesList.map((item, index) => (
+            <li key={index}>
+              <p>{item}</p>
+              <button onClick={() => deleteArticle(index, item)}>
+                <i className="fa-solid fa-trash-can"></i>
+              </button>
 
-          </li>
-        ))}
-      </ul>
+            </li>
+          ))}
+        </ul>
+      </div>
     </main>
   )
 }
